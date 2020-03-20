@@ -1,8 +1,11 @@
 # connmap
 connmap is an X11 desktop widget that shows location of your current network peers on a world map.
-![sample](https://raw.githubusercontent.com/jafarlihi/connmap/master/sample.png?token=AKL72SZ6ZUB4HTXII7GKNWK6PYZPA)
 
-Here's how it looks on my desktop with the default settings:
+<p align="center"> 
+  <img src="https://raw.githubusercontent.com/jafarlihi/connmap/master/sample.png?token=AKL72SZ6ZUB4HTXII7GKNWK6PYZPA">
+</p>
+
+Here's how it looks on my 1366x768 desktop with the default settings:
 ![desktop](https://raw.githubusercontent.com/jafarlihi/connmap/master/desktop.png?token=AKL72S5HJ6HPGP5PRTAG66K6PYZTG)
 
 ## Installation

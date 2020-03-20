@@ -1,0 +1,5 @@
+location_x 20
+location_y 500
+white true
+small true
+update_interval 1

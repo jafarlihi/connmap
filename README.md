@@ -25,7 +25,7 @@ white true
 small true
 update_interval 1
 ```
-- location_x/location_y specifies the widget location in your desktop. 
+- `location_x`/`location_y` specifies the widget location in your desktop. 
 
 - Setting `white` to false will draw a black map.
 

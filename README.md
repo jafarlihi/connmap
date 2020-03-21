@@ -9,7 +9,7 @@ Here's how it looks on my 1366x768 desktop with the default settings:
 ![desktop](https://raw.githubusercontent.com/jafarlihi/connmap/master/desktop.png?token=AKL72S5HJ6HPGP5PRTAG66K6PYZTG)
 
 ## Installation
-Clone the repository and run `make install`.
+Clone the repository `git clone https://github.com/jafarlihi/connmap --depth 1` and run `make install`.
 
 ## Dependencies
 Build dependencies: xlib, libcairo
@@ -21,13 +21,10 @@ Installation will create `.connmap/connmaprc` in your home directory. Default `c
 ```
 location_x 20
 location_y 500
-white true
 small true
 update_interval 1
 ```
-- `location_x`/`location_y` specifies the widget location in your desktop. 
-
-- Setting `white` to false will draw a black map.
+- `location_x`/`location_y` specifies the widget location in your desktop.
 
 - Setting `small` to false will resize widget from 500px/250px to 1000px/500px.
 

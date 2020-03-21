@@ -10,7 +10,6 @@
 typedef struct Config {
     uint32_t location_x;
     uint32_t location_y;
-    bool white;
     bool small;
     uint32_t update_interval;
 } Config;

@@ -1,7 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
 
 #include "config.h"
 #include "x11.h"
@@ -17,19 +16,11 @@ int main(int argc, char **argv) {
     if (config->small == true) {
         size_x = 500;
         size_y = 250;
-        if (config->white == true) {
-            mapName = strcpy(mapName, "w500.png");
-        } else {
-            mapName = strcpy(mapName, "b500.png");
-        }
+        mapName = strcpy(mapName, "w500.png");
     } else {
         size_x = 1000;
         size_y = 500;
-        if (config->white == true) {
-            mapName = strcpy(mapName, "w1000.png");
-        } else {
-            mapName = strcpy(mapName, "b1000.png");
-        }
+        mapName = strcpy(mapName, "w1000.png");
     }
 
     char mapFilename[256];
@@ -59,7 +50,9 @@ int main(int argc, char **argv) {
         sleep(config->update_interval);
     }
 
-    cairo_close_x11_surface(surface);
+    Display *display = cairo_xlib_surface_get_display(surface);
+    cairo_surface_destroy(surface);
+    XCloseDisplay(display);
     return 0;
 }
 

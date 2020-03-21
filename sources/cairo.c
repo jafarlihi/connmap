@@ -3,12 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-void cairo_close_x11_surface(cairo_surface_t *surface) {
-    Display *display = cairo_xlib_surface_get_display(surface);
-    cairo_surface_destroy(surface);
-    XCloseDisplay(display);
-}
-
 void draw_world(cairo_surface_t *surface, char *mapFilename) {
     cairo_t *context = cairo_create(surface);
     cairo_surface_t *world = cairo_image_surface_create_from_png(mapFilename);

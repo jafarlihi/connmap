@@ -5,7 +5,6 @@
 #include <cairo-xlib.h>
 #include <stdbool.h>
 
-void cairo_close_x11_surface(cairo_surface_t *surface);
 void draw_world(cairo_surface_t *surface, char *mapName);
 void draw_point(cairo_surface_t *surface, bool small, int x, int y);
 void clear_surface(cairo_surface_t *surface);

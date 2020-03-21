@@ -21,12 +21,6 @@ Config *readConfig() {
             config->location_x = atoi(value);
         } else if (strcmp(name, "location_y") == 0) {
             config->location_y = atoi(value);
-        } else if (strcmp(name, "white") == 0) {
-            if (strcmp(value, "true") == 0) {
-                config->white = true;
-            } else {
-                config->white = false;
-            }
         } else if (strcmp(name, "small") == 0) {
             if (strcmp(value, "true") == 0) {
                 config->small = true;

@@ -13,11 +13,10 @@
 int main(int argc, char **argv) {
     Config *config = readConfig();
     int size_x, size_y;
-    char *mapName;
+    char *mapName = malloc(sizeof(char) * 10);
     if (config->small == true) {
         size_x = 500;
         size_y = 250;
-        mapName = malloc(sizeof(char) * 8);
         if (config->white == true) {
             mapName = strcpy(mapName, "w500.png");
         } else {
@@ -26,7 +25,6 @@ int main(int argc, char **argv) {
     } else {
         size_x = 1000;
         size_y = 500;
-        mapName = malloc(sizeof(char) * 9);
         if (config->white == true) {
             mapName = strcpy(mapName, "w1000.png");
         } else {

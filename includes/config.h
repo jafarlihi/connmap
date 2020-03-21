@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 #define RCFILE "/.connmap/connmaprc"
+#define RESOURCES "/.connmap/resources/"
 
 typedef struct Config {
     uint32_t location_x;

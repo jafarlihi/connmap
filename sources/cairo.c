@@ -9,13 +9,10 @@ void cairo_close_x11_surface(cairo_surface_t *surface) {
     XCloseDisplay(display);
 }
 
-void draw_world(cairo_surface_t *surface, char *mapName) {
+void draw_world(cairo_surface_t *surface, char *mapFilename) {
     cairo_t *context = cairo_create(surface);
     cairo_set_source_rgba(context, 0.0, 0.0, 0.0, 0.0);
     cairo_paint(context);
-    char mapFilename[256];
-    strcat(strcpy(mapFilename, getenv("HOME")), RESOURCES);
-    strcat(mapFilename, mapName);
     cairo_surface_t *world = cairo_image_surface_create_from_png(mapFilename);
     cairo_set_source_surface(context, world, 0, 0);
     cairo_paint(context);

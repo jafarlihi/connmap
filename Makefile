@@ -21,7 +21,7 @@ OFILES:=$(patsubst %.c,$(BUILD)/%.o,$(CFILES))
 .DEFAULT_GOAL:=build
 
 install: build
-	cp -R ./.connmap ~/
+	cp -R ./connmap ~/.config/
 
 build: CFLAGS+=-O0
 build: mkdir $(OFILES)

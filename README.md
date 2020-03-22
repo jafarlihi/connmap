@@ -17,7 +17,7 @@ Build dependencies: xlib, libcairo
 Runtime dependencies: `ss` utility of `iproute2` package
 
 ## Config
-Installation will create `.connmap/connmaprc` in your home directory. Default `connmaprc` looks like this:
+Installation will create `~/.config/connmap/connmaprc`. Default `connmaprc` looks like this:
 ```
 location_x 20
 location_y 500

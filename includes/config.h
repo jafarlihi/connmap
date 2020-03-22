@@ -4,8 +4,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define RCFILE "/.connmap/connmaprc"
-#define RESOURCES "/.connmap/resources/"
+#define RCFILE "/.config/connmap/connmaprc"
+#define RESOURCES "/.config/connmap/resources/"
 
 typedef struct Config {
     uint32_t location_x;

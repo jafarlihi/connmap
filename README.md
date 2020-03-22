@@ -12,7 +12,7 @@ Here's how it looks on my 1366x768 desktop with the default settings:
 Clone the repository `git clone https://github.com/jafarlihi/connmap --depth 1` and run `make install`.
 
 ## Dependencies
-Build dependencies: xlib, libcairo
+Build dependencies: xlib, libcairo2
 
 Runtime dependencies: `ss` utility of `iproute2` package
 

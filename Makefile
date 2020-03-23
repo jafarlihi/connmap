@@ -25,11 +25,11 @@ install: build
 
 build: CFLAGS+=-O0
 build: mkdir $(OFILES)
-	$(CC) $(CFLAGS) $(OFILES) -o $(TARGET).exe
+	$(CC) $(OFILES) -o $(TARGET).exe $(CFLAGS)
 
 debug: CFLAGS+=-O0 -ggdb -D DEBUG
 debug: mkdir $(OFILES)
-	$(CC) $(CFLAGS) $(OFILES) -o $(TARGET).debug.exe
+	$(CC) $(OFILES) -o $(TARGET).debug.exe $(CFLAGS)
 
 mkdir:
 	mkdir -p $(BUILD)

@@ -15,9 +15,9 @@ void refreshConnections() {
 }
 
 char *getConnection() {
-    char ipPort[128];
+    char ipPort[32];
 
-    while (fgets(ipPort, 128, ssOutput) != NULL) {
+    while (fgets(ipPort, 32, ssOutput) != NULL) {
         int index = 0;
         while (ipPort[index++] != ':');
         char *ip = malloc(sizeof(char) * index - 1);

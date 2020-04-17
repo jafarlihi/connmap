@@ -115,8 +115,9 @@ void populateVector(IPRangeVector *vector) {
         while (*lineIterator != '"')
             lineIterator++;
         lineIterator++;
-        char *countryCode = malloc(2);
+        char *countryCode = malloc(3);
         strncpy(countryCode, line + (lineIterator - line), 2);
+        countryCode[2] = '\0';
         if (strcmp(countryCode, "-\"") == 0)
             continue;
         IPRangeVector_append(vector, (IPRange){.start = startRange, .end = endRange, .countryCode = countryCode});

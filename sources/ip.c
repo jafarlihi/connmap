@@ -92,8 +92,13 @@ void populateVector(IPRangeVector *vector) {
     char *line = NULL;
     size_t len = 0;
     ssize_t read;
+    char *file = malloc(255);
+    for (int i = 0; i < 255; i++)
+        file[i] = '\0';
 
-    fp = fopen(strcat(getenv("HOME"), IPDBFILE), "r");
+    strcat(file, getenv("HOME"));
+    strcat(file, IPDBFILE);
+    fp = fopen(file, "r");
     if (fp == NULL) {
         printf("Couldn't open the IPDB file, exiting\n");
         exit(1);

@@ -6,7 +6,8 @@ typedef struct Coord {
     int y;
 } Coord;
 
-Coord getCoord(char *countryCode);
+void initCoordinateDatabase();
+Coord *getCoord(char *countryCode);
 
 #endif
 

@@ -17,6 +17,7 @@ void draw_world(cairo_surface_t *surface, char *mapFilename) {
     cairo_surface_t *world = cairo_image_surface_create_from_png(mapFilename);
     cairo_set_source_surface(context, world, 0, 0);
     cairo_paint(context);
+    cairo_surface_destroy(world);
     cairo_destroy(context);
     draw_invisible_point(surface);
 }

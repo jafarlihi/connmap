@@ -33,3 +33,9 @@ update_interval 1
 - Only IPv4 is supported.
 
 - Only country geolocation is supported. Longitude/latitude geolocation might be added in the future.
+## IP Database
+You can acquire up-to-date IP database from: https://lite.ip2location.com/database/ip-country
+
+It is expected to be found at `$HOME/.config/connmap/resources/IP2LOCATION-LITE-DB1.CSV`
+
+IP database license: https://creativecommons.org/licenses/by-sa/4.0/

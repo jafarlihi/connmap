@@ -30,6 +30,8 @@ update_interval 1
 
 - `update_interval` is seconds the application will sleep for before fetching the updated list of network connections.
 ## Limitations
+- Tested only with i3wm, might not work as expected in other DE/WM.
+
 - Only IPv4 is supported.
 
 - Only country geolocation is supported. Longitude/latitude geolocation might be added in the future.

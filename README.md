@@ -9,7 +9,7 @@ Here's how it looks on my 1366x768 desktop with the default settings:
 ![desktop](https://raw.githubusercontent.com/jafarlihi/connmap/master/desktop.png?token=AKL72S5HJ6HPGP5PRTAG66K6PYZTG)
 
 ## Installation
-Clone the repository `git clone https://github.com/jafarlihi/connmap --depth 1` and run `make install`.
+Clone the repository `git clone https://github.com/jafarlihi/connmap --depth 1`, run `make install`, then run the resulting executable `./connmap.exe`.
 
 ## Dependencies
 Build dependencies: xlib, libcairo2

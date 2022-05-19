@@ -7,12 +7,6 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct IPRange {
-    uint64_t start;
-    uint64_t end;
-    char *countryCode;
-} IPRange;
-
 typedef struct IPRangeVector {
     int size;
     int capacity;
@@ -43,40 +37,41 @@ void IPRangeVector_append(IPRangeVector *vector, IPRange value) {
     vector->data[vector->size++] = value;
 }
 
-IPRange binarySearch(int l, int r, uint64_t ipnumber) {
+IPRange binarySearch(int l, int r, uint64_t ip) {
     if (r >= l) {
         int mid = l + (r - l) / 2;
         IPRange midRange = IPRangeVector_get(vector, mid);
-        if (midRange.start <= ipnumber && midRange.end >= ipnumber)
+        if (midRange.start <= ip && midRange.end >= ip)
             return midRange;
-        if (midRange.start > ipnumber)
-            return binarySearch(l, mid - 1, ipnumber);
-        return binarySearch(mid + 1, r, ipnumber);
+        if (midRange.start > ip)
+            return binarySearch(l, mid - 1, ip);
+        return binarySearch(mid + 1, r, ip);
     }
-    return (IPRange) {.start = 0, .end = 0, .countryCode = NULL};
+    return (IPRange) {.start = 0, .end = 0, .latitude = 0.0, .longitude = 0.0};
 }
 
-IPRange getNumberRange(uint64_t ipnumber) {
-    return binarySearch(0, vector->size, ipnumber);
+IPRange getNumberRange(uint64_t ip) {
+    return binarySearch(0, vector->size, ip);
 }
 
-uint64_t ipToNumber(char *ipstring) {
-    uint64_t ip = inet_addr(ipstring);
-    uint8_t *ptr = (uint8_t *) &ip;
-    uint64_t number = 0;
+uint64_t ipToDecimal(char *ip) {
+    char *endp;
 
-    if (ipstring != NULL) {
-        number =  (uint8_t)(ptr[3]);
-        number += (uint8_t)(ptr[2]) * 256;
-        number += (uint8_t)(ptr[1]) * 256 * 256;
-        number += (uint8_t)(ptr[0]) * 256 * 256 * 256;
-    }
-    return number;
+    unsigned long a = strtoul(ip, &endp, 10);
+    if (*endp != '.') return -1;
+    unsigned long b = strtoul(ip = endp+1, &endp, 10);
+    if (*endp != '.') return -1;
+    unsigned long c = strtoul(ip = endp+1, &endp, 10);
+    if (*endp != '.') return -1;
+    unsigned long d = strtoul(ip = endp+1, &endp, 10);
+    if (*endp) return -1;
+
+    return (uint32_t) ((a << 24) | (b << 16) | (c << 8) | d);
 }
 
-char *getCountryCode(char *ip) {
-    uint64_t ipnumber = ipToNumber(ip);
-    return getNumberRange(ipnumber).countryCode;
+IPRange getCoordinates(char *ip) {
+    uint64_t ipDecimal = ipToDecimal(ip);
+    return getNumberRange(ipDecimal);
 }
 
 void populateVector(IPRangeVector *vector);
@@ -97,35 +92,29 @@ void populateVector(IPRangeVector *vector) {
         file[i] = '\0';
 
     strcat(file, getenv("HOME"));
-    strcat(file, IPDBFILE);
+    strcat(file, IPV4FILE);
     fp = fopen(file, "r");
     if (fp == NULL) {
-        printf("Couldn't open the IPDB file, exiting\n");
+        printf("Couldn't open the IPV4FILE file, exiting\n");
         exit(1);
     }
 
     while ((read = getline(&line, &len, fp)) != -1) {
-        uint64_t startRange = strtoull(line + 1, NULL, 10);
-        char *lineIterator = line + 1;
-        while (*lineIterator != '"')
-            lineIterator++;
-        lineIterator++;
-        while (*lineIterator != '"')
+        uint64_t startRange = strtoull(line, NULL, 10);
+        char *lineIterator = line;
+        while (*lineIterator != ',')
             lineIterator++;
         lineIterator++;
         uint64_t endRange = strtoull(line + (lineIterator - line), NULL, 10);
-        while (*lineIterator != '"')
+        while (*lineIterator != ',')
             lineIterator++;
         lineIterator++;
-        while (*lineIterator != '"')
+        double latitude = strtod(line + (lineIterator - line), NULL);
+        while (*lineIterator != ',')
             lineIterator++;
         lineIterator++;
-        char *countryCode = malloc(3);
-        strncpy(countryCode, line + (lineIterator - line), 2);
-        countryCode[2] = '\0';
-        if (strcmp(countryCode, "-\"") == 0)
-            continue;
-        IPRangeVector_append(vector, (IPRange){.start = startRange, .end = endRange, .countryCode = countryCode});
+        double longitude = strtod(line + (lineIterator - line), NULL);
+        IPRangeVector_append(vector, (IPRange){.start = startRange, .end = endRange, .latitude = latitude, .longitude = longitude});
     }
 
     fclose(fp);

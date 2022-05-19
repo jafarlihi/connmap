@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 void draw_world(cairo_surface_t *surface, char *mapName);
-void draw_point(cairo_surface_t *surface, bool small, int x, int y);
+void draw_point(cairo_surface_t *surface, bool small, double latitude, double longitude);
 void clear_surface(cairo_surface_t *surface);
 
 #endif

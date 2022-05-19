@@ -5,9 +5,11 @@
 #include <string.h>
 
 FILE *ssOutput;
+char ip[16];
 
 void refreshConnections() {
-    ssOutput = popen("ss -atun4 | grep ESTAB | awk '{print $6}'", "r");
+    ssOutput = popen("ss -atun4 | grep ESTAB | awk '{print $6}' | cut -f1 -d\":\"", "r");
+
     if (ssOutput == NULL) {
         printf("Failed to run ss command\n" );
         exit(1);
@@ -15,16 +17,11 @@ void refreshConnections() {
 }
 
 char *getConnection() {
-    char ipPort[32];
-
-    while (fgets(ipPort, 32, ssOutput) != NULL) {
-        int index = 0;
-        while (ipPort[index++] != ':');
-        char *ip = malloc(sizeof(char) * index - 1);
-        strncpy(ip, ipPort, index - 1);
+    while (fgets(ip, 16, ssOutput) != NULL) {
+        ip[strcspn(ip, "\n")] = 0;
+        if (strlen(ip) < 7) continue;
         return ip;
     }
-
     pclose(ssOutput);
     return NULL;
 }

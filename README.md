@@ -9,7 +9,7 @@ Here's how it looks on my 1366x768 desktop with the default settings:
 ![desktop](https://raw.githubusercontent.com/jafarlihi/connmap/master/desktop.png?token=AKL72S5HJ6HPGP5PRTAG66K6PYZTG)
 
 ## Installation
-Clone the repository `git clone https://github.com/jafarlihi/connmap --depth 1`, run `make install`, then run the resulting executable `./connmap.exe`.
+Clone the repository `git clone https://github.com/jafarlihi/connmap --depth 1`, run `./install.sh`, then run the resulting executable `./connmap.exe`.
 
 ## Dependencies
 Build dependencies: xlib, libcairo2
@@ -33,11 +33,3 @@ update_interval 1
 - Tested only with i3wm, might not work as expected in other DE/WM.
 
 - Only IPv4 is supported.
-
-- Only country geolocation is supported. Longitude/latitude geolocation might be added in the future.
-## IP Database
-You can acquire up-to-date IP database from: https://lite.ip2location.com/database/ip-country
-
-It is expected to be found at `$HOME/.config/connmap/resources/IP2LOCATION-LITE-DB1.CSV`
-
-IP database license: https://creativecommons.org/licenses/by-sa/4.0/

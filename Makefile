@@ -12,7 +12,7 @@ else
 endif
 
 CC:=gcc
-CFLAGS:=-std=gnu11 -I$(INCLUDES) $(shell pkg-config --libs --cflags cairo x11)
+CFLAGS:=-std=gnu11 -I$(INCLUDES) $(shell pkg-config --libs --cflags cairo x11 xfixes)
 
 CFILES:=$(shell find $(SOURCES) -printf '%P ' -name '*.c')
 OFILES:=$(patsubst %.c,$(BUILD)/%.o,$(CFILES))

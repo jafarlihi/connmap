@@ -30,8 +30,10 @@ int main(int argc, char **argv) {
     initCoordinateDatabase();
     initIPDatabase();
     X11Details x11 = initX11(config->location_x, config->location_y, size_x, size_y);
-    cairo_surface_t *surface = cairo_xlib_surface_create(x11.display, x11.window, DefaultVisual(x11.display, DefaultScreen(x11.display)), size_x, size_y);
+    cairo_surface_t *surface = cairo_xlib_surface_create(x11.display, x11.window, x11.vinfo.visual, size_x, size_y);
     cairo_xlib_surface_set_size(surface, size_x, size_y);
+
+    XEvent event;
 
     while (1) {
         clear_surface(surface);
@@ -48,6 +50,7 @@ int main(int argc, char **argv) {
             free(ip);
         }
 
+        XNextEvent(x11.display, &event);
         sleep(config->update_interval);
     }
 

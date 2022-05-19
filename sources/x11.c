@@ -7,43 +7,56 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include <X11/Xutil.h>
+#include <X11/extensions/shape.h>
+#include <X11/extensions/Xfixes.h>
 
 X11Details initX11(uint32_t location_x, uint32_t location_y, uint32_t size_x, uint32_t size_y) {
     Display *display = XOpenDisplay(NULL);
 
     if (display == NULL) {
         printf("\nCannot connect to X server\n");
-        exit(0);
+        exit(1);
     }
 
-    int screen = DefaultScreen(display);
+    int screen = XDefaultScreen(display);
     Window root = DefaultRootWindow(display);
-    Colormap colormap = XCreateColormap(display, root, DefaultVisual(display, screen), AllocNone);
+
+    XVisualInfo vinfo;
+    XMatchVisualInfo(display, screen, 32, TrueColor, &vinfo);
 
     XSetWindowAttributes attrs;
-    attrs.colormap = colormap;
-    attrs.event_mask = ExposureMask;
-    attrs.background_pixmap = ParentRelative;
-    attrs.backing_store = Always;
-    attrs.save_under = False;
-    attrs.override_redirect = True;
-
-    unsigned long flags = CWColormap | CWEventMask | CWOverrideRedirect | CWBackingStore;
+    attrs.colormap = XCreateColormap(display, root, vinfo.visual, AllocNone);
+    attrs.override_redirect = 1;
+    attrs.background_pixel = 0;
+    attrs.border_pixel = 0;
 
     Window window = XCreateWindow(display,
             root,
-            location_x, location_y,
-            size_x, size_y,
+            location_x,
+            location_y,
+            size_x,
+            size_y,
             0,
-            DefaultDepth(display, screen),
+            vinfo.depth,
             InputOutput,
-            DefaultVisual(display, screen),
-            flags,
+            vinfo.visual,
+            CWOverrideRedirect | CWColormap | CWBackPixel | CWBorderPixel,
             &attrs);
 
-    XLowerWindow(display, window);
     XMapWindow(display, window);
 
-    return (X11Details) {.display = display, .window = window};
+    XRectangle rect;
+    XserverRegion region = XFixesCreateRegion(display, &rect, 1);
+    XFixesSetWindowShapeRegion(display, window, ShapeInput, 0, 0, region);
+    XFixesDestroyRegion(display, region);
+
+    XClassHint *xch = XAllocClassHint();
+    xch->res_name = "connmap";
+    xch->res_class = "connmap";
+    XSetClassHint(display, window, xch);
+
+    XLowerWindow(display, window);
+
+    return (X11Details) {.display = display, .window = window, .vinfo = vinfo};
 }
 

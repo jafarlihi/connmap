@@ -27,6 +27,12 @@ Config *readConfig() {
             } else {
                 config->small = false;
             }
+        } else if (strcmp(name, "black") == 0) {
+            if (strcmp(value, "true") == 0) {
+                config->black = true;
+            } else {
+                config->black = false;
+            }
         } else if (strcmp(name, "update_interval") == 0) {
             config->update_interval = atoi(value);
         }

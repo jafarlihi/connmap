@@ -22,11 +22,14 @@ Installation will create `~/.config/connmap/connmaprc`. Default `connmaprc` look
 location_x 20
 location_y 500
 small true
+black false
 update_interval 1
 ```
 - `location_x`/`location_y` specifies the widget location in your desktop.
 
 - Setting `small` to false will resize widget from 500px/250px to 1000px/500px.
+
+- Setting `black` to true will draw map outline in black instead of white.
 
 - `update_interval` is seconds the application will sleep for before fetching the updated list of network connections.
 ## Limitations

@@ -1,4 +1,5 @@
 location_x 20
 location_y 500
 small true
+black false
 update_interval 1

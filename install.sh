@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-export MAXMIND_LICENSE_KEY=K46gDa9xlhpBzRZi
+cd ./connmap/resources/
+unzip ipv4.csv.zip
 
-cd tools
-./get-ip-database.py
-
-cd ..
+cd ../../
 make install
 

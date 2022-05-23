@@ -15,19 +15,13 @@ int main(int argc, char **argv) {
     if (config->small == true) {
         size_x = 500;
         size_y = 250;
-        if (config->black == true) {
-            mapName = strcpy(mapName, "w500b.png");
-        } else {
-            mapName = strcpy(mapName, "w500.png");
-        }
+        if (config->black == true) mapName = strcpy(mapName, "w500b.png");
+        else mapName = strcpy(mapName, "w500.png");
     } else {
         size_x = 1000;
         size_y = 500;
-        if (config->black == true) {
-            mapName = strcpy(mapName, "w1000b.png");
-        } else {
-            mapName = strcpy(mapName, "w1000.png");
-        }
+        if (config->black == true) mapName = strcpy(mapName, "w1000b.png");
+        else mapName = strcpy(mapName, "w1000.png");
     }
 
     char mapFilename[256];

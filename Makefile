@@ -21,6 +21,7 @@ OFILES:=$(patsubst %.c,$(BUILD)/%.o,$(CFILES))
 .DEFAULT_GOAL:=build
 
 install: build
+	cd ./connmap/resources && unzip -n ipv4.csv.zip
 	cp -R ./connmap ~/.config/
 
 build: CFLAGS+=-O0
@@ -38,6 +39,7 @@ clean:
 	rm -rf $(BUILD)
 	rm -f $(TARGET).exe
 	rm -f $(TARGET).debug.exe
+	rm -f ./connmap/resources/ipv4.csv
 
 $(OFILES): $(BUILD)/%.o: $(SOURCES)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@

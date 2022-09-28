@@ -17,7 +17,7 @@ CFLAGS:=-std=gnu11 -I$(INCLUDES) $(shell pkg-config --libs --cflags cairo x11 xf
 CFILES:=$(shell find $(SOURCES) -printf '%P ' -name '*.c')
 OFILES:=$(patsubst %.c,$(BUILD)/%.o,$(CFILES))
 
-.PHONY: build
+.PHONY: install build debug clean mkdir
 .DEFAULT_GOAL:=build
 
 install: build

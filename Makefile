@@ -23,23 +23,24 @@ OFILES:=$(patsubst %.c,$(BUILD)/%.o,$(CFILES))
 install: build
 	cd ./connmap/resources && unzip -n ipv4.csv.zip
 	cp -R ./connmap ~/.config/
+	cp connmap.elf ~/.local/bin/connmap
 
 build: CFLAGS+=-O0
 build: mkdir $(OFILES)
-	$(CC) $(OFILES) -o $(TARGET).exe $(CFLAGS)
+	$(CC) $(OFILES) -o $(TARGET).elf $(CFLAGS)
 
 debug: CFLAGS+=-O0 -ggdb -D DEBUG
 debug: mkdir $(OFILES)
-	$(CC) $(OFILES) -o $(TARGET).debug.exe $(CFLAGS)
+	$(CC) $(OFILES) -o $(TARGET).debug.elf $(CFLAGS)
 
 mkdir:
 	mkdir -p $(BUILD)
 
 clean:
-	rm -rf $(BUILD)
-	rm -f $(TARGET).exe
-	rm -f $(TARGET).debug.exe
-	rm -f ./connmap/resources/ipv4.csv
+	-rm -rf $(BUILD)
+	-rm -f $(TARGET).elf
+	-rm -f $(TARGET).debug.elf
+	-rm -f ./connmap/resources/ipv4.csv
 
 $(OFILES): $(BUILD)/%.o: $(SOURCES)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@

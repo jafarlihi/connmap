@@ -23,6 +23,7 @@ OFILES:=$(patsubst %.c,$(BUILD)/%.o,$(CFILES))
 install: build
 	cd ./connmap/resources && unzip -n ipv4.csv.zip
 	cp -R ./connmap ~/.config/
+	mkdir -p ~/.local/bin
 	cp connmap.elf ~/.local/bin/connmap
 
 build: CFLAGS+=-O0

@@ -5,6 +5,8 @@ connmap is an X11 desktop widget that shows location of your current network pee
   <img src="https://raw.githubusercontent.com/jafarlihi/connmap/master/sample.png?token=AKL72SZ6ZUB4HTXII7GKNWK6PYZPA">
 </p>
 
+![Demo](https://github.com/jafarlihi/file-hosting/blob/1261f88826242ef96d40bf0ffc6ed57ecca241e5/connmap-demo.gif?raw=true)
+
 ## Installation
 Clone the repository `git clone https://github.com/jafarlihi/connmap --depth 1`, install the dependencies (see below), run `make install`, then run the resulting executable `./connmap.elf`.
 

@@ -23,7 +23,7 @@ Build dependencies: xlib, libxext, libxfixes, libcairo2
 
 Installation dependencies: unzip
 
-Runtime dependencies: `ss` utility of `iproute2` package
+Runtime dependencies: iproute2
 
 Installation for Arch Linux:
 ```

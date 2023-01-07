@@ -16,9 +16,19 @@ exec --no-startup-id connmap.elf
 ```
 
 ## Dependencies
-Build dependencies: xlib, libcairo2
+Build dependencies: xlib, libxext, libcairo2
 
 Runtime dependencies: `ss` utility of `iproute2` package
+
+Installation for Arch Linux:
+```
+sudo pacman -S --needed iproute2 cairo libx11 libxext
+```
+
+Installation for Ubuntu:
+```
+sudo apt install iproute2 libx11-dev libxext-dev libcairo2-dev libxfixes-dev
+```
 
 ## Config
 Installation will create `~/.config/connmap/connmaprc`. Default `connmaprc` looks like this:

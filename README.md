@@ -23,14 +23,16 @@ Build dependencies: xlib, libxext, libxfixes, libcairo2
 
 Runtime dependencies: `ss` utility of `iproute2` package
 
+Installation dependencies: unzip
+
 Installation for Arch Linux:
 ```
-sudo pacman -S --needed iproute2 libx11 libxext libxfixes cairo
+sudo pacman -S --needed iproute2 libx11 libxext libxfixes cairo unzip
 ```
 
 Installation for Ubuntu:
 ```
-sudo apt install iproute2 libx11-dev libxext-dev libxfixes-dev libcairo2-dev
+sudo apt install iproute2 libx11-dev libxext-dev libxfixes-dev libcairo2-dev unzip
 ```
 
 ## Config

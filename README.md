@@ -8,6 +8,13 @@ connmap is an X11 desktop widget that shows location of your current network pee
 ## Installation
 Clone the repository `git clone https://github.com/jafarlihi/connmap --depth 1`, run `make install`, then run the resulting executable `./connmap.elf`.
 
+If you want to run it without attaching it to the terminal then add ampersand at the end of the command: `./connmal.elf &`.
+
+You can also add it to your i3 config to run at the startup (make sure it is in the PATH):
+```
+exec --no-startup-id connmap.elf
+```
+
 ## Dependencies
 Build dependencies: xlib, libcairo2
 

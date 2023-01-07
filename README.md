@@ -27,7 +27,7 @@ sudo pacman -S --needed iproute2 libx11 libxext libxfixes cairo
 
 Installation for Ubuntu:
 ```
-sudo apt install iproute2 libx11-dev libxext-dev libcairo2-dev libxfixes-dev
+sudo apt install iproute2 libx11-dev libxext-dev libxfixes-dev libcairo2-dev
 ```
 
 ## Config

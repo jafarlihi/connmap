@@ -16,13 +16,13 @@ exec --no-startup-id connmap.elf
 ```
 
 ## Dependencies
-Build dependencies: xlib, libxext, libcairo2
+Build dependencies: xlib, libxext, libxfixes, libcairo2
 
 Runtime dependencies: `ss` utility of `iproute2` package
 
 Installation for Arch Linux:
 ```
-sudo pacman -S --needed iproute2 cairo libx11 libxext
+sudo pacman -S --needed iproute2 libx11 libxext libxfixes cairo
 ```
 
 Installation for Ubuntu:

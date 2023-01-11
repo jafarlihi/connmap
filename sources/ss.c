@@ -11,7 +11,7 @@ void refreshConnections() {
     ssOutput = popen("ss -atun4 | grep ESTAB | awk '{print $6}' | cut -f1 -d\":\"", "r");
 
     if (ssOutput == NULL) {
-        printf("Failed to run ss command\n" );
+        printf("Failed to run ss command\n");
         exit(1);
     }
 }
